@@ -1,19 +1,26 @@
 #  The contact options.
 
+- type: portfolio
+  icon: "fas fa-link"
+  url:  'https://www.kairostay.com'
+  noblank: true
+
 - type: github
   icon: "fab fa-github"
-
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
-
-- type: rss
-  icon: "fas fa-rss"
-  noblank: true
 
 - type: linkedin
   icon: 'fab fa-linkedin'
   url:  'https://www.linkedin.com/in/kairoshestiatay/'
+
+- type: email
+  icon: "fas fa-envelope"
+  noblank: true # open link in current tab
+#
+#- type: rss
+#  icon: "fas fa-rss"
+#  noblank: true
+
+
 
 # Uncomment and complete the url below to enable more contact options
 #
