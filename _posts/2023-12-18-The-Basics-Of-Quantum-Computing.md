@@ -3,6 +3,7 @@ title: The Basics of Quantum Computing
 date: 2023-12-18 09:39:56
 categories: [Quantum]
 tags: [Quantum]
+math: true
 ---
 
 # Introduction
@@ -249,9 +250,9 @@ state `|0⟩` or `|1⟩`.
 
 But before we move on, lets go even deeper. A Hadamard gate can be represented by a matrix:
 
-$$
-H = \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix}
-$$
+  $$
+  H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}
+  $$
 
 Some significant properties of the Hadamard gate are:
 
@@ -264,10 +265,9 @@ Some significant properties of the Hadamard gate are:
   vector:
 
   $$
-  H|0⟩ = \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 0
-  \\end{bmatrix} = \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = \\frac{1}{\\sqrt{2}} (|0⟩ +
-  |1⟩) = |+⟩
+  H|0⟩ = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \frac{1}{\sqrt{2}} (|0⟩ + |1⟩) = |+\rangle
   $$
+
 
   Hence, we can see that the state `|0⟩` is transformed into the state `|+⟩`.
 
