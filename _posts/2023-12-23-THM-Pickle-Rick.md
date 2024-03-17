@@ -1,11 +1,8 @@
 ---
 title: "THM: Pickle Rick"
 date: 2023-12-23 18:33:10
-categories: TryHackMe
-tags:
-  - TryHackMe
-  - Linux
-  - Privilege Escalation 
+categories: [Writeups, THM]
+tags: [THM, Linux]
 ---
 
 # Introduction
