@@ -22,12 +22,12 @@ This might get a little lengthy, so use the table of contents below to navigate 
 
 ## Tools Used
 
-| Tool                                                                                                                                                                                                                                                                                                                                 | Description | Free? |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------:|:-----:|
-| [ALEAPP](https://github.com/abrignoni/ALEAPP)                                                                                                                                                                                                                                                                                        |             |   ✓   |
-| [ILEAPP](https://github.com/abrignoni/iLEAPP/)                                                                                                                                                                                                                                                                                       |             |   ✓   |
-| [Magnet AXIOM](https://www.magnetforensics.com/products/magnet-axiom/?utm_source=Google&utm_medium=Search&utm_campaign=2024_AXIOM_Google_ads&utm_source=Google&utm_medium=Search&utm_campaign=2023_AXIOM_productpage&gad_source=1&gclid=CjwKCAjwzN-vBhAkEiwAYiO7oJlGKbvNEIc5ZXRWlfjqjoDqxguipGd8zKzm2ymER8k7K1CLGIqzNhoCMawQAvD_BwE) |             |   ✗   |
-| [ArtiFast](https://forensafe.com/blogs/iOSSnapChat.html)                                                                                                                                                                                                                                                                             |             |   ✓   |
+| Tool                                                                                                                                                                                                                                                                                                                                 |                                                                                                                              Description                                                                                                                               | Free? |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----:|
+| [ALEAPP](https://github.com/abrignoni/ALEAPP)                                                                                                                                                                                                                                                                                        |                                                         A comprehensive mobile forensics analysis tool for parsing Android artifacts from various sources such as backups, logical images, cloud services etc.                                                         |   ✓   |
+| [ILEAPP](https://github.com/abrignoni/iLEAPP/)                                                                                                                                                                                                                                                                                       |                                                                                                    A complementary tool to ALEAPP, focusing on iOS devices instead.                                                                                                    |   ✓   |
+| [Magnet AXIOM](https://www.magnetforensics.com/products/magnet-axiom/?utm_source=Google&utm_medium=Search&utm_campaign=2024_AXIOM_Google_ads&utm_source=Google&utm_medium=Search&utm_campaign=2023_AXIOM_productpage&gad_source=1&gclid=CjwKCAjwzN-vBhAkEiwAYiO7oJlGKbvNEIc5ZXRWlfjqjoDqxguipGd8zKzm2ymER8k7K1CLGIqzNhoCMawQAvD_BwE) | An enterprise-grade digital forensic platform designed to streamline investigative processes across various digital sources like computers, smartphones, and cloud services. It offers advanced capabilities for acquiring, analysing, and reporting digital evidence. |   ✗   |
+| [ArtiFast](https://forensafe.com/blogs/iOSSnapChat.html)                                                                                                                                                                                                                                                                             |                                                                             A digital forensic tool designed for rapid artifact extraction and analysis from computers and mobile devices.                                                                             |   ✓   |
 
 ## iOS
 
@@ -127,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                                                                                               |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                                                                                       |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -265,7 +265,69 @@ used iLEAPP for these challenges.
 
     > What is the timestamp of the message Chad sent to Rocco but was never received? YYYY-MM-DD HH:MM:SS UTC
 
-To be continued!!
+    For this challenge, I had to compare the `Message Sent` from the iOS device with the `Message Received` from the
+    Android device.
+
+21. Follow the Breadcrumbs (50 points)
+
+    > How many times did Chad’s keyboard become visible within the Amazon app on 12/24/2023?
+
+    This challenge took me a really long time to figure out. I chanced
+    upon [this Apple developers article](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/applicationusage/3752156-textinputsessions)
+    that described a property called `textInputSessions` that tracks
+    > when the user raises a keyboard and ends when the keyboard dismisses.
+
+    I saw that iLEAPP did have a `Biome Text Input Sessions report` feature, so I filtered for Amazon within it.
+
+    ![iLEAPP](ios_21.png)
+
+    There were only two sessions on 2023-12-24, so the answer was 2.
+
+    Ans: `2`
+
+22. Read my mind (50 points)
+
+    > What message was sent to Rocco in a video game?
+
+    This challenge too, took me an awful long time. I sifted through iLEAPP's `Photos.sqlite Analysis report`
+    and `App Snapshots (screenshots) report` but couldn't find anything. I skipped this initially but later found it
+    while going through the files in the `private/var/mobile/Media/DCIM/100APPLE` directory. There were A LOT of stuff
+    in there:
+    ```bash
+    kairos@pop-os:~/CTF/MVS24/00008110-000925383620A01E_files_full/private/var/mobile/Media/DCIM/100APPLE$ l
+    IMG_0001.PNG IMG_0011.MOV IMG_0021.MOV IMG_0032.MOV IMG_0043.PNG
+    IMG_0002.PNG IMG_0012.PNG IMG_0022.HEIC IMG_0033.PNG IMG_0044.HEIC
+    IMG_0003.PNG IMG_0013.PNG IMG_0022.MOV IMG_0034.PNG IMG_0044.MOV
+    IMG_0004.HEIC IMG_0014.PNG IMG_0023.HEIC IMG_0035.PNG IMG_0045.HEIC
+    IMG_0004.MOV IMG_0015.HEIC IMG_0024.HEIC IMG_0036.PNG IMG_0045.MOV
+    IMG_0005.HEIC IMG_0016.HEIC IMG_0025.MOV IMG_0037.PNG IMG_0046.HEIC
+    IMG_0006.MP4 IMG_0017.HEIC IMG_0026.HEIC IMG_0038.MP4 IMG_0047.PNG
+    IMG_0007.PNG IMG_0018.AAE IMG_0027.HEIC IMG_0039.MP4 IMG_0048.PNG
+    IMG_0008.JPG IMG_0018.HEIC IMG_0028.HEIC IMG_0040.AAE IMG_0049.PNG
+    IMG_0009.MP4 IMG_0019.HEIC IMG_0029.HEIC IMG_0040.MOV IMG_0050.PNG
+    IMG_0010.AAE IMG_0020.HEIC IMG_0030.HEIC IMG_0041.AAE IMG_0051.PNG
+    IMG_0010.MOV IMG_0020.MOV IMG_0031.HEIC IMG_0041.MOV
+    IMG_0011.AAE IMG_0021.HEIC IMG_0031.MOV IMG_0042.PNG
+    ```
+
+    I searched through, yes, (almost) every single file there. I found this image and I thought it was the answer:
+
+    ![IMG](ios_22.1.PNG)
+
+    But the question asked for what Rocco received, not sent.
+
+    Eventually, I watched the videos and found this snippet:
+
+    ![img](ios_22.2.png)
+
+    And got the answer!!! Also, I have no idea why the colours look like that in the video.
+
+    Ans: `why do that when it should be simply`
+
+
+23. Chat GPT is my PREFERENCE for AI (50 points) - Unsolved
+
+    > What is the ChatGPT userID associated with chadwickmr95@gmail.com
 
 ## Cipher
 
@@ -425,7 +487,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-                                        |-------------------------|-----------------------------------------------|
+                                                                    |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
