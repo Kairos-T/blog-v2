@@ -127,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                       |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                        |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -167,7 +167,7 @@ used iLEAPP for these challenges.
     I found a screenshot of the ChatGPT question:
 
     ![iLEAPP](ios_10.1.png)
-    ![iLEAPP](ios_10.2.png)
+    ![iLEAPP](ios_10.2.png){: width="250"}
 
     Ans: `How to make online friends`
     Honestly, same.
@@ -487,7 +487,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-                                                                                                                                                        |-------------------------|-----------------------------------------------|
+                                                                                                                                                                                                    |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
@@ -620,15 +620,100 @@ harder questions that I didn't manage to get. I mainly used ALEAPP for these cha
    Ans: `8`
 
 9. You can never be too ready (10 points)
-    > How many additional survival tips were provided in the $9 book Rocco was looking into?
+   > How many additional survival tips were provided in the $9 book Rocco was looking into?
 
-    I came across this in Google Photos:
-    
-    ![ALEAPP](android_9.png)
-    
-    Ans: `72`
+   I came across this in Google Photos:
+
+   ![ALEAPP](android_9.png)
+
+   Ans: `72`
 
 10. Tag you’re it! (10 points)
     > What city was the user in when they identified an AirTag on them?
 
+    There is an `Android Airtag Scans report` feature in ALEAPP that provided the location of the AirTag scan.
 
+    ![ALEAPP](android_10.1.png)
+
+    Keying in the latitude and longitude into Google Maps:
+
+    ![Google Maps](android_10.2.png)
+
+    Ans: `Windsor`
+
+11. A game of Cat and Mouse (10 points) - Unsolved
+    > What game did two beloved characters promote in an Ad?
+
+12. Always achieving new heights (10 points) - Unsolved
+    > What was the new score achieved on the video game Rocco watched on YouTube?
+
+13. Remember your floaties (10 points)
+    > What fun outdoor activity location was searched for?
+
+    Initially, I was looking at the Chrome search history, but anyway realised there was a `Google Maps Searches Report`
+    feature in ALEAPP. It resulted in one place:
+
+    ![ALEAPP](android_13.png)
+
+    Ans: `Big Water Campground`
+
+14. R-E-J-E-C-T-E-D Rejected (10 points)
+    > When was the last shutdown that was initiated by Rocco? (YYYY-MM-DD HH:MM:SS) UTC 24 hour time.
+
+    Under the `Shutdown Checkpoints report` feature, I sorted the table by the latest timestamp.
+
+    ![ALEAPP](android_14.png)
+
+    Ans: `2023-12-28 23:47:29`
+
+15. No two cents about them (10 points)
+
+    > According to exCHANGEs in discord with Chad, what did Chad want back from Rocco?
+
+    Looking at the `Discord Chats report` and searching for `chadwickgames`:
+
+    ![ALEAPP](android_15.png)
+
+    Ans: `Money`
+
+16. Out of Stock (25 points) - Unsolved
+    > What is the most recent score in Subway Surfer
+
+17. So Salty!(25 points)
+
+    > What is the handle of the person who is talking about how upset they are with Rocco?
+
+    I remember coming across some sort Twitter message about Rocco as I was going through the Google Photos. Going back:
+
+    ![ALEAPP](android_17.jpeg){: width="250" }
+
+    Ans: `@larissajenna9`
+
+18. Secrets Secrets are no Fun (25 points)
+    > What did Rocco search in the App Store to download the app used to hide photos?
+
+    Under the `Google Play Searches report` table, there were quite a few searches. Going through some of the unfamiliar
+    ones like `home depot`, `root checker` and `calculator vault` by searching up more information on them on Google, I
+    found out that the `calculator vault` was an app used to hide photos.
+
+    Ans: `calculator vault`
+
+19. LIVE your life (25 points)  - Unsolved
+    > What two sports did rocco capture in a photo (__ and __)
+
+20. Don’t let them see you down (25 points)
+    > What was added using photoshop
+
+    There isn't a Photoshop parser in ALEAPP, so I decided to look through the media files in the logical data file
+    itself. In `/data/media/0/Pictures/Photoshop Express/`, there were several PNG files. All of them looked pretty much
+    the same though. Here's one of them:
+
+    ![ALEAPP](android_20.1.png){: width="250" }
+
+    This image looks a little familiar — I saw something like this in the Google Photos earlier.
+
+    ![ALEAPP](android_20.2.jpeg){: width="250"}
+
+    Comparing the two images, the success sticker was the thing that was added.
+
+    Ans: `success`
