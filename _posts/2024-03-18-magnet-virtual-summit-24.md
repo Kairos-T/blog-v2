@@ -34,7 +34,7 @@ This might get a little lengthy, so use the table of contents below to navigate 
 Personally, I found the iOS challenges more difficult than the Android ones, but these were rather interesting! I mainly
 used iLEAPP for these challenges.
 
-### Questions
+### Questions (17/23)
 
 1. Why are your messages green? (5 points)
    > On what date did Rocco and Chadwick first meet in person according to their conversations? YYYY-MM-DD format
@@ -127,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                                                        |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                                                      |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -333,7 +333,7 @@ used iLEAPP for these challenges.
 
 The cipher questions in MVSCTF'23 were really simple, but this year's was definitely more tricky.
 
-### Questions
+### Questions (9/12)
 
 1. Why did the bicycle fall over? It was tired of all the ROTation! (5 points)
    > rfgq ayl lmr zc rfgq qgknjc
@@ -487,7 +487,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-                                                                                                                                                                                                    |-------------------------|-----------------------------------------------|
+                                                                                                                                                                                                                                            |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
@@ -522,7 +522,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
 I found the Android challenges to be more like a walk in the park compared to the iOS challenges, but there were a few
 harder questions that I didn't manage to get. I mainly used ALEAPP for these challenges.
 
-### Questions
+### Questions (17/22)
 
 1. Press x to Respawn (5 points)
    > On what platform did Rocco share his Call of Duty Username?
@@ -717,3 +717,66 @@ harder questions that I didn't manage to get. I mainly used ALEAPP for these cha
     Comparing the two images, the success sticker was the thing that was added.
 
     Ans: `success`
+
+21. It’s the eye of the tiger (25 points) - Unsolved
+    > When is Rocco's Bday? (YYYY-MM-DD)
+
+22. Stalker Alert (50 points)
+    > Shortly after logging into Facebook with IP address 72.38.231.98, a photo was taken. Where was this photo taken?
+
+    In the given Facebook files, there is a `security_and_login_information` file. Viewing the `logins_and_logouts.html`
+    file, we can see all the login information, along with timestamps and IP addresses.
+
+    One of the entries for the login was:
+
+    | Time                    |                |
+    |-------------------------|----------------|
+    | Dec 27, 2023 11:16:01am |                |
+    | IP address              | 72.38.231.98   |
+    | Site                    | m.facebook.com |
+
+    So the photo should be taken on December 27th around 11:16am.
+
+    Under the `Emulated Storage Metadata - Images report` feature, there was a table containing the information of the
+    images taken along with their timestamps. Searching for images taken on 2023-12-27, there were a few:
+
+    ![ALEAPP](android_22.1.png)
+
+    The earliest one was taken at `2023-12-27 16:30:49+00:00`. I wasn't sure if this was the right one since that wasn't
+    that close to 11.16am, but that was my only lead. I grabbed the image from the logical data file:
+    ![ALEAPP](android_22.2.png)
+
+    No idea where this was. But since it was residing in the phone itself (and not taken from some social media
+    platform), the Exif data should still be intact. Using `exiftool` to view the metadata (truancated a bit due to the
+    length):
+    ```bash
+    kairos@pop-os:~/Downloads$ exiftool PXL_20231227_163049844.jpg 
+    File Name                       : PXL_20231227_163049844.jpg
+    MIME Type                       : image/jpeg
+    Make                            : Google
+    Camera Model Name               : Pixel 3a XL
+    Date/Time Original              : 2023:12:27 11:30:49
+    Create Date                     : 2023:12:27 11:30:49
+    Lens Model                      : Pixel 3a XL back camera 4.44mm f/1.8
+    GPS Latitude Ref                : North
+    GPS Longitude Ref               : West
+    GPS Altitude Ref                : Above Sea Level
+    GPS Time Stamp                  : 16:25:42
+    GPS Img Direction Ref           : Magnetic North
+    GPS Img Direction               : 89
+    GPS Date Stamp                  : 2023:12:27
+    GPS Altitude                    : 152.5 m Above Sea Level
+    GPS Date/Time                   : 2023:12:27 16:25:42Z
+    GPS Latitude                    : 42 deg 16' 28.50" N
+    GPS Longitude                   : 83 deg 0' 9.31" W
+    GPS Position                    : 42 deg 16' 28.50" N, 83 deg 0' 9.31" W
+    Lens ID                         : Pixel 3a XL back camera 4.44mm f/1.8
+    ```
+
+    Grabbing the coordinates and putting it into Google Maps (`42°16'28.5"N 83°00'09.3"W`):
+
+    ![Google Maps](android_22.3.png)
+
+    Ans: `Devonshire Mall`
+
+# Conclusion
