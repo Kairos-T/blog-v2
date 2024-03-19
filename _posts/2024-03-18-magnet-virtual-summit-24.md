@@ -7,8 +7,11 @@ img_path: /img/MVSCTF/
 ---
 
 MVS CTF was a CTF that took place on 6th March 2024; a three-hour-long event. Frankly, that was quite a short amount of
-time to solve all the challenges especially at midnight in Singapore. But anyway, here is the writeup for the challenges
-that I managed to solve!
+time to solve all the challenges especially at midnight in Singapore. I took part in last year's MVS CTF, and that was
+my first actual CTF ever. I learnt SO much, and my interest in Digital Forensics grew from it. I was beyond glad to have
+received the email for this year's MVSCTF again, and again, have learnt so so much in this year's one.
+
+Anyway, here is the writeup for the challenges that I managed to solve!
 
 Unfortunately this is the only image I have of CTFd at some point during the CTF, and I didn't manage to get the final
 scoreboard before it was taken down...
@@ -124,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                                                              |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                                    |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -428,7 +431,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-        |-------------------------|-----------------------------------------------|
+    |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
