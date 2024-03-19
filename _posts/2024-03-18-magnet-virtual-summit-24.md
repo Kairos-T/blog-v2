@@ -780,3 +780,4 @@ harder questions that I didn't manage to get. I mainly used ALEAPP for these cha
     Ans: `Devonshire Mall`
 
 # Conclusion
+48/57 questions solved, and I'm pretty proud of that. This is a huge improvement from last year's performance. Immensely grateful for the organisers for putting together such a great CTF! See you next year :D
