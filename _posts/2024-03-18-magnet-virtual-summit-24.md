@@ -124,7 +124,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                        |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                              |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -348,7 +348,115 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
 8. Giovan Battista Bellaso probably LOVED pigs (10 points)
    > Giovan.JPG
 
-Unfortunately for the image/audio steg questions, I've lost the files after the CTF; i didn't think i'd do writeups lol... will update soon!
+   ![Giovan](cipher_8.1.png)
+
+   I've seen this cipher also in my cryptography module, so I knew this was the Pigpen cipher. With reference to the
+   image
+   from [this article](https://highschool.spsd.org/crypt/pigpen.html), I decoded the message by hand on the good
+   ol' `nano`.
+
+   ![Pigpen](cipher_8.2.png)
+
+   This wasn't the answer though, so I tried
+   using [dcode's cipher identifier tool](https://www.dcode.fr/cipher-identifier)
+   to possibly identify the cipher. The top result was the Vigenère cipher. Inputting the message and the key `LOVED`, I
+   got the answer!
+
+   Ans: `PIGSARETRULYAMAZINGANIMALS`
+
+9. Surfing sound waves in California searching for hidden messages (25 points)
+   > Song.wav
+
+   The file can be accessed [here](/img/MVSCTF/Song.wav).
+   Usually, when given an audio steganography challenge, I would use `Audacity` to look at the audio file. Toggling
+   the `Spectrogram` view:
+   ![Audacity](cipher_9.png)
+
+   Ans: `HotelCalifornia`
+
+10. ROTten people hiding their secrets! (25 points)
+    > Steganography.rtf
+
+    The file can be downloaded [here](/img/MVSCTF/Steganography.rtf). `rtf`, or Rich Text Format, is a file format that
+    is used for documents — something like your Microsoft Docx files. Docx files can be unzipped and dumped, but
+    unfortunately this `rtf` file couldn't be unzipped.
+
+    ```bash
+    kairos@pop-os:~/Downloads$ unzip Steganography.rtf
+    Archive:  Steganography.rtf
+    End-of-central-directory signature not found.  Either this file is not
+    a zipfile, or it constitutes one disk of a multi-part archive.  In the
+    latter case the central directory and zipfile comment will be found on
+    the last disk(s) of this archive.
+    unzip:  cannot find zipfile directory in one of Steganography.rtf or
+    Steganography.rtf.zip, and cannot find Steganography.rtf.ZIP, period.
+    ```
+
+    I opened the file in LibreOffice Writer but there was nothing much. I looked at the header and footers — nothing.
+
+    ![LibreOffice](cipher_10.1.png)
+
+    Out of desperation, I dumped the strings of the file and beyond the usual document text (fonts and whatnot), at the
+    bottom, there seemed to be a string after the hex:
+
+    ```bash
+    kairos@pop-os:~/Downloads$ strings Steganography.rtf 
+    {\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff31507\deff0\stshfdbch31506\stshfloch31506\stshfhich31506\stshfbi31507\deflang1033\deflangfe1033\themelang1033\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}
+    ... (Truncated)
+    e5e9ac39da01feffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000
+    00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000
+    000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffffffffffffffffffffffff000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000105000000000000}}
+    Yzuzex_flk
+    ```
+
+    Given that `ROT` was in the hint, I tried to ROT the string
+    using [dcode's ROT Cipher Tool](https://www.dcode.fr/rot-cipher) in brute force mode and got the string.
+
+    ![dCode](cipher_10.2.png)
+
+    Ans: `Hiding_out`
+
+11. EXIF data, the memory foam of photography, never forgets the shot you took! (50 points)
+    > nicedog.jpg
+
+    We are provided with an image:
+
+    ![nicedog](nicedog.jpg)
+
+    As per the `EXIF` hint, I used [Aperisolve](https://www.aperisolve.com/) to take a look at the image metadata. I got
+    a table of the image's metadata (I truncated some lines due to its length):
+
+    | EXIFTOOL                |                                               |
+        |-------------------------|-----------------------------------------------|
+    | ExifToolVersion         | 12.16                                         |
+    | FileSize                | 623 KiB                                       |
+    | FileType                | JPEG                                          |
+    | FileTypeExtension       | jpg                                           |
+    | MIMEType                | image/jpeg                                    |
+    | ExifByteOrder           | Big-endian (Motorola, MM)                     |
+    | YResolution             | 1                                             |
+    | Make                    | Apple                                         |
+    | Model                   | iPhone SE                                     |
+    | ExifVersion             | 0230                                          |
+    | ComponentsConfiguration | Y, Cb, Cr, -                                  |
+    | FlashpixVersion         | 0100                                          |
+    | LensSerialNumber        | 5a6d3931626d52665a6d78685a773d3d              |
+
+    The lens serial number looked a bit unusual. Looked like a hex string, so I used a hex to text converter
+    from [Dupli Checker](https://www.duplichecker.com/hex-to-text.php) and got a string: `Zm91bmRfZmxhZw==`. This then
+    looked like a Base64 string, so I went to convert it using [Base64 Decode](https://www.base64decode.org/) and got
+    the answer.
+
+    Ans: `found_flag`
+
+12. Why did the balloon go to therapy? It needed to OPEN PUFF about its inflated emotions! (50 points) - Unsolved
+    > puffr.bmp
+
+    ![puffr](puffr.bmp)
+
+    A `BMP` file, or a bitmap file, is a raster graphics image file format. I tried dumping the strings, looking at the
+    image in GIMP and reading up more about BMP steganography, but unfortunately didn't manage to solve this :(
 
 ## Android
 
