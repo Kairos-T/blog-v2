@@ -127,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                                                                                                                       |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                       |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -487,7 +487,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-                                                                    |-------------------------|-----------------------------------------------|
+                                                                                                                                                        |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
@@ -518,4 +518,117 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     image in GIMP and reading up more about BMP steganography, but unfortunately didn't manage to solve this :(
 
 ## Android
+
+I found the Android challenges to be more like a walk in the park compared to the iOS challenges, but there were a few
+harder questions that I didn't manage to get. I mainly used ALEAPP for these challenges.
+
+### Questions
+
+1. Press x to Respawn (5 points)
+   > On what platform did Rocco share his Call of Duty Username?
+
+   Given `share`, we can safely assume that there was some sort of social media or messaging platform used. Looking at
+   the parsed data, there were Facebook (and Messenger), Discord, Twitter, SMS, and YouTube. I searched
+   for `Call of Duty` and `CoD` through the various features, and found most of the conversation regarding it was on
+   Twitter.
+
+   ![ALEAPP](android_1.png)
+
+   I couldn't find the exact DM, but I found quite a bit of chatter from Chadwick and Rocco about wanting to play CoD
+   together, so I tried Twitter.
+
+   Ans: `Twitter`
+
+2. Warm Up (5 points)
+   > What Southern state’s sports team did Rocco search up? (STATE ONLY)
+
+   There was Chrome and Firefox browsing history in the parsed data, so I looked through them. In the Chrome history, a
+   Ragin Cajuns football record was searched up, so I assumed it was that.
+
+   ![ALEAPP](android_2.1.png)
+
+   Searching the team on Google showed that it was the Louisiana Ragin' Cajuns.
+
+   Ans: `Louisiana`
+
+3. Can you Handle this (5 points)
+   > What was Rocco’s Twitter account name?
+
+   Under the Twitter dumps from earlier, I came across a bunch of JSON content. Lookiing under `screen_name` for Rocco:
+
+   ![ALEAPP](android_3.1.png)
+
+   Ans:`RoccoSachs96775
+
+4. Need to reach those heights (5 points)
+   > What is the SIM operator name?
+
+   ALEAPP has a `SIM_info_0` / `Device Info report` feature.
+
+   ![ALEAPP](android_4.png)
+
+   Ans: `Boost Mobile`
+
+5. Not to be basic but... (5 points)
+
+   > What is the default Internet Browser?
+
+   Under the `App Roles report` feature and searching for `browser`, the default browser was returned:
+
+   ![ALEAPP](android_5.png)
+
+   Ans: `Chrome`
+
+6. Survival Mode Activated (5 points)
+   > What conference did Rocco show interest in?
+
+   Earlier as I was scrolling through his search history, I came across something called `Preppercon` in one of them.
+
+   ![ALEAPP](android_6.1.png)
+
+   Some conferences are called something-con, such as HITCON. So I tried that.
+
+   Ans: `Preppercon`
+
+7. Sign me up! (5 points)
+   > What email is associated with the device?
+
+   Under the `Accounts report`:
+
+   ![ALEAPP](android_7.png)
+   There were a few instances of `roccotsachs@gmail.com`.
+
+   Ans: `roccotsachs@gmail.com  `
+
+8. Not so popular (5 points)
+   > How many messages were sent from Rocco in Twitter Direct Messages?
+
+   This one took me quite some time to dig through. ALEAPP doesn't have a Twitter DMs parser, so I looked through the
+   Twitter DB from the logical data file itself.
+
+   I'm not that familiar with Android file structure, so I simply searched up `Twitter` in the directory to find where
+   the Twitter data resides in.
+
+   ![ALEAPP](android_8.1.png)
+
+   So that's `/data/data/com.twitter.android`. There is a databases folder in it, and I found one pretty large db
+   called `1719897971716685824-66.db`. Opening it up in SQLite Browser showed 38 tables, but one of them was
+   called `conversations`. Under the `users_username` column, Rocco appears 8 times.
+
+   ![SQLite](android_8.2.png)
+
+   Ans: `8`
+
+9. You can never be too ready (10 points)
+    > How many additional survival tips were provided in the $9 book Rocco was looking into?
+
+    I came across this in Google Photos:
+    
+    ![ALEAPP](android_9.png)
+    
+    Ans: `72`
+
+10. Tag you’re it! (10 points)
+    > What city was the user in when they identified an AirTag on them?
+
 
