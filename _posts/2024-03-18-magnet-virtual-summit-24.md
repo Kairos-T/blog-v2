@@ -127,7 +127,7 @@ used iLEAPP for these challenges.
    Within the table, two messages stood out:
 
    | Message Timestamp   | Read Timestamp      | Message                                                                                                                                                                       | Service | Message Direction | Message Sent | Message Delivered | Message Read | Account | Account Login | Chat Contact ID |
-                                                                                    |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
+                                                                                                               |---------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------------|--------------|-------------------|--------------|---------|---------------|-----------------|
    | 2023-11-29 17:40:02 | 2023-11-29 17:46:37 | BSTFreeMSG: Welcome to Boost Mobile! Get the most out of your new iPhone with the BoostOne app and more: http://bst-m.co/KyFLsm4E Reply END to STOP                           | SMS     | Incoming          |              | Yes               | Yes          | E:      | E:            | 91065           |
    | 2023-12-17 00:27:48 | 2023-12-17 00:28:33 | BOOST: You've used 4.27 GB of data. Once you reach 5.00 GB your data may be impacted. To get more data, shop Extras from your My Boost dashboard. https://id.boostmobile.com/ | SMS     | Incoming          |              | Yes               | Yes          | E:      |               |                 |
 
@@ -238,29 +238,23 @@ used iLEAPP for these challenges.
 
     ![iLEAPP](ios_18.1.png)
 
-    There were a few games:
+    There were a few games: Among Us, Subway Surfers, Terrarium, Call of Duty Shooter, Clash of Clans.
 
-- Among Us
-- Subway Surfers
-- Terrarium
-- Call of Duty Shooter
-- Clash of Clans
+    Next was to figure out where Chadwick was asking for the strategy. It was probably some social media platform — he
+    was asking people stuff anyway. I couldn't find anything on Discord or iMessage, so there was still Twitter,
+    Facebook, Reddit and possibly YouTube. I remembered that under tha App Snapshots, I found Chad's Twitter and
+    Facebook accounts (or rather that he had Facebook).
 
-  Next was to figure out where Chadwick was asking for the strategy. It was probably some social media platform — he
-  was asking people stuff anyway. I couldn't find anything on Discord or iMessage, so there was still Twitter,
-  Facebook, Reddit and possibly YouTube. I remembered that under tha App Snapshots, I found Chad's Twitter and
-  Facebook accounts (or rather that he had Facebook).
+    His Twitter account didn't seem to have anything related to asking for strategies:
 
-  His Twitter account didn't seem to have anything related to asking for strategies:
+    ![iLEAPP](ios_18.2.png)
 
-  ![iLEAPP](ios_18.2.png)
+    So I moved on to Facebook.
 
-  So I moved on to Facebook.
+    ![iLEAPP](ios_18.3.png)
 
-  ![iLEAPP](ios_18.3.png)
-
-  Facebook it was!
-  Ans: `Terrarium`
+    Facebook it was!
+    Ans: `Terrarium`
 
 19. The devil is in the details (25 points) - Unsolved
     > Whose bitmoji is dressed like a devil?
@@ -431,7 +425,7 @@ The cipher questions in MVSCTF'23 were really simple, but this year's was defini
     a table of the image's metadata (I truncated some lines due to its length):
 
     | EXIFTOOL                |                                               |
-    |-------------------------|-----------------------------------------------|
+                                        |-------------------------|-----------------------------------------------|
     | ExifToolVersion         | 12.16                                         |
     | FileSize                | 623 KiB                                       |
     | FileType                | JPEG                                          |
