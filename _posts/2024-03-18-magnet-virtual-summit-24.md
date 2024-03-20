@@ -744,7 +744,7 @@ harder questions that I didn't manage to get. I mainly used ALEAPP for these cha
 
     The earliest one was taken at `2023-12-27 16:30:49+00:00`. I wasn't sure if this was the right one since that wasn't
     that close to 11.16am, but that was my only lead. I grabbed the image from the logical data file:
-    ![ALEAPP](android_22.2.png)
+    ![ALEAPP](android_22.2.jpg)
 
     No idea where this was. But since it was residing in the phone itself (and not taken from some social media
     platform), the Exif data should still be intact. Using `exiftool` to view the metadata (truancated a bit due to the
