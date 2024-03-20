@@ -12,13 +12,13 @@
   icon: 'fab fa-linkedin'
   url:  'https://www.linkedin.com/in/kairoshestiatay/'
 
-- type: email
-  icon: "fas fa-envelope"
-  noblank: true # open link in current tab
-#
-#- type: rss
-#  icon: "fas fa-rss"
-#  noblank: true
+#- type: email
+#  icon: "fas fa-envelope"
+#  noblank: true # open link in current tab
+
+- type: rss
+  icon: "fas fa-rss"
+  noblank: true
 
 
 
