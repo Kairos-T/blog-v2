@@ -206,4 +206,4 @@ jekyll-compose:
   default_front_matter:
     title:
     categories: []
-    tags: [ , ]
+    tags: []
