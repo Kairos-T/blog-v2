@@ -201,3 +201,9 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+jekyll-compose:
+  default_front_matter:
+    title:
+    categories: []
+    tags: [ , ]
