@@ -202,8 +202,9 @@ jekyll-archives:
     tag: /tags/:name/
     category: /categories/:name/
 
-jekyll-compose:
+jekyll_compose:
   default_front_matter:
-    title:
-    categories: []
-    tags: []
+    posts:
+      title: ""
+      categories: []
+      tags: []
