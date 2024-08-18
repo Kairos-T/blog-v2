@@ -4,7 +4,7 @@ title: 'A Quick Look at Cosmic DE'
 date: 2024-05-12 22:54 +0800
 categories: [ Linux ]
 tags: [ Linux ]
-img_path: img/cosmic
+img_path: /img/cosmic/
 ---
 
 Recently, I have been scrolling through [Pop!_OS' Subreddit](https://www.reddit.com/r/pop_os/), and have been seeing a
