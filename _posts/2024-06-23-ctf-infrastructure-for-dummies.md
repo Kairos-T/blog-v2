@@ -104,4 +104,41 @@ To ensure that the server does not crash, I implemented rate limiting, to ensure
 
 ### CertBot
 
+To get the website to HTTPS, you would need to install CertBot. This is a pretty simple process. You can follow the
+documentation [here](https://eff-certbot.readthedocs.io/en/stable/install.html#alternative-1-docker).
+
+Essentially, the steps are:
+
+1. Generate a certificate:
+
+	```bash
+	docker run -it --rm --name certbot \
+			  -v "/etc/letsencrypt:/etc/letsencrypt" \
+			  -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+			  certbot/certbot certonly
+	```
+	When prompted, select the `Standalone` option, and accept the terms (type `y`). 
+2. Copy the certificates to the CTFd directory:
+
+	```bash
+	sudo cp /etc/letsencrypt/live/<yourdomain>/fullchain.pem ./conf/nginx/fullchain.pem 
+	sudo cp /etc/letsencrypt/live/<yourdomain>/privkey.pem ./conf/nginx/privkey.pem
+	```
+
+3. Modify your docker-compose (`docker-compose.yml`) configuration:
+	
+	```yaml
+      - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
+      - ./conf/nginx/fullchain.pem:/certificates/fullchain.pem:ro
+      - ./conf/nginx/privkey.pem:/certificates/privkey.pem:ro	
+    ```
+ 
+4. Add https port mapping to the same file:
+	
+	```yaml
+	ports:
+	  - 80:80
+	  - 443:443
+	```
+ 
 // TODO
