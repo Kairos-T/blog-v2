@@ -4,7 +4,7 @@ title: 'CTF Infrastructure for Dummies'
 date: 2024-06-23 01:27 +0800
 categories: [ CTF ]
 tags: [ CTF ]
-img_path: img/ctfinfra
+img_path: /img/ctfinfra
 ---
 
 As part of my school's run of
