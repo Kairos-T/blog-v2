@@ -20,8 +20,7 @@ back.
 
 ## Solution
 
-The easiest solution is to re-enable the insecure renegotiation in OpenSSL. ((
-Reference)[https://ubuntuforums.org/showthread.php?t=2474436])
+The easiest solution is to re-enable the insecure renegotiation in OpenSSL. [(Reference)](https://ubuntuforums.org/showthread.php?t=2474436)
 
 1. Create a config file so this insecure negotiation is used for WPA negotiations only
    ```bash
